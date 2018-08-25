@@ -81,6 +81,9 @@ def add_user():
 def get_user():
     all_users = User.query.all()
     result = users_schema.dump(all_users)
+    
+    
+
     return jsonify(result.data)
 
 
@@ -97,11 +100,23 @@ def get_user():
 # endpoint to get user detail by id
 @app.route("/user/<string:username>", methods=["GET"])
 def user_detail(username):
+# データベース処理
+    usr = User.query.filter_by(username=username).first()
+    if not usr:
+        abort(404)
+    else:
+        usr.point += 1
+        u_nickname = usr.nickname
+        u_line_token = usr.nickname
+        db.session.commit()
+
     usr = User.query.filter_by(username=username).first()
     if not usr:
         abort(404)
     else:
         return user_schema.jsonify(usr)
+
+    
 
 
 # # endpoint to update user
