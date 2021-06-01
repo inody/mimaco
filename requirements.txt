@@ -7,6 +7,6 @@ marshmallow-sqlalchemy==0.13.2
 pipenv==2018.5.18
 requests==2.18.4
 SQLAlchemy==1.2.7
-urllib3==1.22
+urllib3==1.26.5
 python-dotenv
 numpy
